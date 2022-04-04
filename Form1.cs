@@ -14,17 +14,23 @@ namespace WinFormsGraphsEditor {
 		public const int RADIUS = 15;
 		private readonly Graph graph;
 		private readonly VertexDrawer vertexDrawer;
+		private readonly VertexMarker vertexMarker;
 		
 		public Form1() {
 			InitializeComponent();
 			drawArea = new Bitmap(canvas.Size.Width, canvas.Size.Height);
 			canvas.Image = drawArea;
-			using(Graphics g = Graphics.FromImage(drawArea)) {
-				g.Clear(Color.White);
-			}
+			ClearCanvas();
 			graph = new Graph();
 			pictureBoxColor.BackColor = Color.Black;
 			vertexDrawer = new VertexDrawer();
+			vertexMarker = new VertexMarker();
+		}
+
+		private void ClearCanvas() {
+			using(Graphics g = Graphics.FromImage(drawArea)) {
+				g.Clear(Color.White);
+			}
 		}
 
 		private void Canvas_MouseDown(object sender, MouseEventArgs e) {
@@ -38,6 +44,9 @@ namespace WinFormsGraphsEditor {
 				graph.AddVertexIfPossible(newVertex);
 				if(newVertex.Number == graph.GetNumberOfVertices())
 					DrawVertex(newVertex);
+			} else if(e.Button == MouseButtons.Right) {
+				vertexMarker.UpdateCurrentMarkedVertex(graph, e.X, e.Y);
+				DrawGraph();
 			}
 		}
 
@@ -47,7 +56,8 @@ namespace WinFormsGraphsEditor {
 		}
 
 		private void DrawGraph() {
-			graph.Draw(drawArea);
+			ClearCanvas();
+			graph.Draw(drawArea, vertexMarker);
 			canvas.Refresh();
 		}
 
@@ -61,7 +71,7 @@ namespace WinFormsGraphsEditor {
 			DrawGraph();
 		}
 
-		private void buttonColor_Click(object sender, EventArgs e) {
+		private void ButtonColor_Click(object sender, EventArgs e) {
 			var colorDialog = new ColorDialog();
 			if(colorDialog.ShowDialog() == DialogResult.OK) {
 				colorDialogBox.Color = colorDialog.Color;

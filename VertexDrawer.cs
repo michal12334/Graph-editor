@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace WinFormsGraphsEditor {
 	public class VertexDrawer {
-		private readonly Pen pen;
+		private readonly Pen normalPen;
+		private readonly Pen dashedPen;
 		private readonly Font font;
 		private readonly StringFormat stringFormat;
 
 		public VertexDrawer() {
-			pen = new Pen(Brushes.Black) {
+			normalPen = new Pen(Brushes.Black) {
 				Width = 2
+			};
+			dashedPen = new Pen(Brushes.Black) {
+				Width = 2,
+				DashPattern = new float[] { 2.0f, 2.0f }
 			};
 			font = new Font("Arial", 12);
 			stringFormat = new StringFormat() {
@@ -22,11 +27,12 @@ namespace WinFormsGraphsEditor {
 			};
 		}
 
-		public void DrawVertex(Vertex vertex, Bitmap bitmap) {
+		public void DrawVertex(Vertex vertex, Bitmap bitmap, bool isVertexMarked = false) {
 			using var g = Graphics.FromImage(bitmap);
 			using var sb = new SolidBrush(vertex.VertexColor);
-			pen.Color = vertex.VertexColor;
-			g.DrawEllipse(pen, vertex.PositionX, vertex.PositionY, Form1.RADIUS * 2, Form1.RADIUS * 2);
+			normalPen.Color = vertex.VertexColor;
+			dashedPen.Color = vertex.VertexColor;
+			g.DrawEllipse(GetPen(isVertexMarked), vertex.PositionX, vertex.PositionY, Form1.RADIUS * 2, Form1.RADIUS * 2);
 			g.DrawString(
 				vertex.Number.ToString(),
 				font,
@@ -34,6 +40,10 @@ namespace WinFormsGraphsEditor {
 				new RectangleF(vertex.PositionX, vertex.PositionY, Form1.RADIUS * 2, Form1.RADIUS * 2),
 				stringFormat
 			);
+		}
+
+		private Pen GetPen(bool isVertexMarked) {
+			return isVertexMarked ? dashedPen : normalPen;
 		}
 	}
 }

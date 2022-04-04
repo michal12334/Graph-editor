@@ -11,5 +11,9 @@ namespace WinFormsGraphsEditor {
 		public int PositionY { get; set; }
 		public int Number { get; set; }
 		public Color VertexColor { get; set; }
+
+		public (int x, int y) GetCenterPosition() {
+			return (PositionX + Form1.RADIUS, PositionY + Form1.RADIUS);
+		}
 	}
 }

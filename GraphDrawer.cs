@@ -13,9 +13,13 @@ namespace WinFormsGraphsEditor {
 			vertexDrawer = new VertexDrawer();
 		}
 
-		public void DrawGraph(List<Vertex> vertices, Bitmap bitmap) {
+		public void DrawGraph(List<Vertex> vertices, Bitmap bitmap, VertexMarker vertexMarker) {
 			foreach(var v in vertices)
-				vertexDrawer.DrawVertex(v, bitmap);
+				vertexDrawer.DrawVertex(v, bitmap, IsVertexMarked(vertexMarker, v));
+		}
+
+		private static bool IsVertexMarked(VertexMarker vertexMarker, Vertex v) {
+			return v.Number == vertexMarker.GetNumberOfCurrentMarkedVertex();
 		}
 	}
 }

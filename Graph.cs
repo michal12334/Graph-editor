@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WinFormsGraphsEditor {
 	public class Graph {
-		private readonly List<Vertex> vertices;
+		internal readonly List<Vertex> vertices;
 		private readonly GraphDrawer graphDrawer;
 
 		public Graph() {
@@ -37,8 +37,8 @@ namespace WinFormsGraphsEditor {
 			return vertices.Count;
 		}
 
-		public void Draw(Bitmap bitmap) {
-			graphDrawer.DrawGraph(vertices, bitmap);
+		public void Draw(Bitmap bitmap, VertexMarker vertexMarker) {
+			graphDrawer.DrawGraph(vertices, bitmap, vertexMarker);
 		}
 	}
 }

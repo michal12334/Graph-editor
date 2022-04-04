@@ -123,7 +123,7 @@ namespace WinFormsGraphsEditor {
 			this.buttonColor.TabIndex = 1;
 			this.buttonColor.Text = "Kolor";
 			this.buttonColor.UseVisualStyleBackColor = true;
-			this.buttonColor.Click += new System.EventHandler(this.buttonColor_Click);
+			this.buttonColor.Click += new System.EventHandler(this.ButtonColor_Click);
 			// 
 			// pictureBoxColor
 			// 
