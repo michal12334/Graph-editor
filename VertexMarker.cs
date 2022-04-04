@@ -36,5 +36,9 @@ namespace WinFormsGraphsEditor {
 		public bool IsAnyVertexMarked() {
 			return numberOfCurrentMarkedVertex != -1;
 		}
+
+		public void UnmarkVertex() {
+			numberOfCurrentMarkedVertex = -1;
+		}
 	}
 }

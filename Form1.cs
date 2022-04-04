@@ -46,6 +46,7 @@ namespace WinFormsGraphsEditor {
 					DrawVertex(newVertex);
 			} else if(e.Button == MouseButtons.Right) {
 				vertexMarker.UpdateCurrentMarkedVertex(graph, e.X, e.Y);
+				//graph.DeleteVertex(vertexMarker.GetNumberOfCurrentMarkedVertex(), vertexMarker);
 				DrawGraph();
 			}
 		}
@@ -76,6 +77,15 @@ namespace WinFormsGraphsEditor {
 			if(colorDialog.ShowDialog() == DialogResult.OK) {
 				colorDialogBox.Color = colorDialog.Color;
 				pictureBoxColor.BackColor = colorDialog.Color;
+			}
+		}
+
+		private void Form1_KeyDown(object sender, KeyEventArgs e) {
+			if((e.KeyData & Keys.Delete) != 0) {
+				if(vertexMarker.IsAnyVertexMarked()) { 
+					graph.DeleteVertex(vertexMarker.GetNumberOfCurrentMarkedVertex(), vertexMarker);
+					DrawGraph();
+				}
 			}
 		}
 	}
