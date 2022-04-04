@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WinFormsGraphsEditor.Exceptions;
 
 namespace WinFormsGraphsEditor {
 	public class VertexMarker {
-		private int numberOfCurrentMarkedVertex;
+		private int numberOfCurrentlyMarkedVertex;
 
 		public VertexMarker() {
-			numberOfCurrentMarkedVertex = -1;
+			numberOfCurrentlyMarkedVertex = -1;
 		}
 
 		public void UpdateCurrentMarkedVertex(Graph graph, int mousePositionX, int mousePositionY) {
 			for(int i = 0; i < graph.vertices.Count; i++) {
 				if(IsMouseInVertex(graph.vertices[i], mousePositionX, mousePositionY)) {
-					numberOfCurrentMarkedVertex = i + 1;
+					numberOfCurrentlyMarkedVertex = i + 1;
 					return;
 				}
 			}
-			numberOfCurrentMarkedVertex = -1;
+			numberOfCurrentlyMarkedVertex = -1;
 		}
 
 		private bool IsMouseInVertex(Vertex vertex, int mousePositionX, int mousePositionY) {
@@ -29,16 +30,22 @@ namespace WinFormsGraphsEditor {
 			return distance2 <= Form1.RADIUS * Form1.RADIUS;
 		}
 
-		public int GetNumberOfCurrentMarkedVertex() {
-			return numberOfCurrentMarkedVertex;
+		public int GetNumberOfCurrentlyMarkedVertex() {
+			return numberOfCurrentlyMarkedVertex;
 		}
 
 		public bool IsAnyVertexMarked() {
-			return numberOfCurrentMarkedVertex != -1;
+			return numberOfCurrentlyMarkedVertex != -1;
 		}
 
 		public void UnmarkVertex() {
-			numberOfCurrentMarkedVertex = -1;
+			numberOfCurrentlyMarkedVertex = -1;
+		}
+
+		public int GetIndexOfCurrentlyMarkedVertex() {
+			if(IsAnyVertexMarked())
+				return GetNumberOfCurrentlyMarkedVertex() - 1;
+			throw new ThereIsNotMarkedVertexException();
 		}
 	}
 }

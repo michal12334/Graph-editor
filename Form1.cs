@@ -77,13 +77,15 @@ namespace WinFormsGraphsEditor {
 			if(colorDialog.ShowDialog() == DialogResult.OK) {
 				colorDialogBox.Color = colorDialog.Color;
 				pictureBoxColor.BackColor = colorDialog.Color;
+				graph.ChangeColorOfMarkedVertex(colorDialog.Color, vertexMarker);
+				DrawGraph();
 			}
 		}
 
 		private void Form1_KeyDown(object sender, KeyEventArgs e) {
 			if((e.KeyData & Keys.Delete) != 0) {
 				if(vertexMarker.IsAnyVertexMarked()) { 
-					graph.DeleteVertex(vertexMarker.GetNumberOfCurrentMarkedVertex(), vertexMarker);
+					graph.DeleteVertex(vertexMarker.GetNumberOfCurrentlyMarkedVertex(), vertexMarker);
 					DrawGraph();
 				}
 			}

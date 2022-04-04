@@ -54,5 +54,11 @@ namespace WinFormsGraphsEditor {
 			}
 			vertexMarker.UnmarkVertex();
 		}
+
+		public void ChangeColorOfMarkedVertex(Color newColor, VertexMarker vertexMarker) {
+			if(vertexMarker.IsAnyVertexMarked()) {
+				vertices[vertexMarker.GetIndexOfCurrentlyMarkedVertex()].VertexColor = newColor;
+			}
+		}
 	}
 }

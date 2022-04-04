@@ -19,7 +19,7 @@ namespace WinFormsGraphsEditor {
 		}
 
 		private static bool IsVertexMarked(VertexMarker vertexMarker, Vertex v) {
-			return v.Number == vertexMarker.GetNumberOfCurrentMarkedVertex();
+			return v.Number == vertexMarker.GetNumberOfCurrentlyMarkedVertex();
 		}
 	}
 }
