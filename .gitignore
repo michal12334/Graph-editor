@@ -1,0 +1,6 @@
+/bin
+/obj
+/.vs
+WinFormsGraphsEditor.csproj*
+WinFormsGraphsEditor.sln
+*.zip
