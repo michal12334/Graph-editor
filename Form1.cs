@@ -28,9 +28,8 @@ namespace WinFormsGraphsEditor {
 		}
 
 		private void ClearCanvas() {
-			using(Graphics g = Graphics.FromImage(drawArea)) {
-				g.Clear(Color.White);
-			}
+			using Graphics g = Graphics.FromImage(drawArea);
+			g.Clear(Color.White);
 		}
 
 		private void Canvas_MouseDown(object sender, MouseEventArgs e) {
@@ -46,7 +45,6 @@ namespace WinFormsGraphsEditor {
 					DrawVertex(newVertex);
 			} else if(e.Button == MouseButtons.Right) {
 				vertexMarker.UpdateCurrentMarkedVertex(graph, e.X, e.Y);
-				//graph.DeleteVertex(vertexMarker.GetNumberOfCurrentMarkedVertex(), vertexMarker);
 				DrawGraph();
 			}
 		}

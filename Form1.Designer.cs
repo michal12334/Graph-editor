@@ -107,6 +107,8 @@ namespace WinFormsGraphsEditor {
 			// 
 			// flowLayoutPanelColor
 			// 
+			this.flowLayoutPanelColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.flowLayoutPanelColor.Controls.Add(this.buttonColor);
 			this.flowLayoutPanelColor.Controls.Add(this.pictureBoxColor);
 			this.flowLayoutPanelColor.Location = new System.Drawing.Point(3, 19);
@@ -116,7 +118,8 @@ namespace WinFormsGraphsEditor {
 			// 
 			// buttonColor
 			// 
-			this.buttonColor.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.buttonColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonColor.Location = new System.Drawing.Point(3, 3);
 			this.buttonColor.Name = "buttonColor";
 			this.buttonColor.Size = new System.Drawing.Size(95, 31);
@@ -127,11 +130,11 @@ namespace WinFormsGraphsEditor {
 			// 
 			// pictureBoxColor
 			// 
-			this.pictureBoxColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBoxColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.pictureBoxColor.Location = new System.Drawing.Point(104, 3);
 			this.pictureBoxColor.Name = "pictureBoxColor";
 			this.pictureBoxColor.Size = new System.Drawing.Size(31, 31);
-			this.pictureBoxColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBoxColor.TabIndex = 0;
 			this.pictureBoxColor.TabStop = false;
 			// 
