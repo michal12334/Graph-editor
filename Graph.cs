@@ -10,10 +10,12 @@ namespace WinFormsGraphsEditor {
 	public class Graph {
 		internal readonly List<Vertex> vertices;
 		private readonly GraphDrawer graphDrawer;
+		internal readonly List<Edge> edges;
 
 		public Graph() {
 			vertices = new List<Vertex>();
 			graphDrawer = new GraphDrawer();
+			edges = new List<Edge>();
 		}
 
 		public void AddVertexIfPossible(Vertex vertex) {
@@ -38,10 +40,32 @@ namespace WinFormsGraphsEditor {
 		}
 
 		public void Draw(Bitmap bitmap, VertexMarker vertexMarker) {
-			graphDrawer.DrawGraph(vertices, bitmap, vertexMarker);
+			graphDrawer.DrawGraph(vertices, edges, bitmap, vertexMarker);
 		}
 
-		public void DeleteVertex(int vertexNumber, VertexMarker vertexMarker) {
+		public void DeleteVertex(VertexMarker vertexMarker) {
+			DeleteAndEnumarateVertices(vertexMarker.GetNumberOfCurrentlyMarkedVertex());
+			DeleteAndEnumerateEdges(vertexMarker.GetNumberOfCurrentlyMarkedVertex());
+			vertexMarker.UnmarkVertex();
+		}
+
+		private void DeleteAndEnumerateEdges(int vertexNumber) {
+			for(int i = 0; i < edges.Count; i++) {
+				if(edges[i].Vertex1 == vertexNumber || edges[i].Vertex2 == vertexNumber) {
+					edges.RemoveAt(i);
+					i--;
+					continue;
+				}
+				if(edges[i].Vertex1 > vertexNumber) {
+					edges[i].Vertex1--;
+				}
+				if(edges[i].Vertex2 > vertexNumber) {
+					edges[i].Vertex2--;
+				}
+			}
+		}
+
+		private void DeleteAndEnumarateVertices(int vertexNumber) {
 			for(int i = 0; i < vertices.Count; i++) {
 				if(vertices[i].Number == vertexNumber) {
 					vertices.RemoveAt(i);
@@ -52,13 +76,35 @@ namespace WinFormsGraphsEditor {
 					vertices[i].Number--;
 				}
 			}
-			vertexMarker.UnmarkVertex();
 		}
 
 		public void ChangeColorOfMarkedVertex(Color newColor, VertexMarker vertexMarker) {
 			if(vertexMarker.IsAnyVertexMarked()) {
 				vertices[vertexMarker.GetIndexOfCurrentlyMarkedVertex()].VertexColor = newColor;
 			}
+		}
+
+		public void AddOrRemoveEdge(int v1Number, int v2Number) {
+			if(v1Number > v2Number)
+				(v1Number, v2Number) = (v2Number, v1Number);
+			var edge = new Edge() {
+				Vertex1 = v1Number,
+				Vertex2 = v2Number
+			};
+			/*if(edges.Contains(edge))
+				edges.Remove(edge);
+			else
+				edges.Add(edge);*/
+			bool wasEdgeRemoved = false;
+			for(int i = 0; i < edges.Count; i++) {
+				if(edges[i].Vertex1 == edge.Vertex1 && edges[i].Vertex2 == edge.Vertex2) {
+					edges.RemoveAt(i);
+					wasEdgeRemoved = true;
+					break;
+				}
+			}
+			if(!wasEdgeRemoved)
+				edges.Add(edge);
 		}
 	}
 }

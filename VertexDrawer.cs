@@ -32,6 +32,7 @@ namespace WinFormsGraphsEditor {
 			using var sb = new SolidBrush(vertex.VertexColor);
 			normalPen.Color = vertex.VertexColor;
 			dashedPen.Color = vertex.VertexColor;
+			g.FillEllipse(Brushes.White, vertex.PositionX, vertex.PositionY, Form1.RADIUS * 2, Form1.RADIUS * 2);
 			g.DrawEllipse(GetPen(isVertexMarked), vertex.PositionX, vertex.PositionY, Form1.RADIUS * 2, Form1.RADIUS * 2);
 			g.DrawString(
 				vertex.Number.ToString(),

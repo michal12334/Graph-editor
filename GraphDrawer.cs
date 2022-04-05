@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 namespace WinFormsGraphsEditor {
 	public class GraphDrawer {
 		private readonly VertexDrawer vertexDrawer;
+		private readonly EdgeDrawer edgeDrawer;
 
 		public GraphDrawer() {
 			vertexDrawer = new VertexDrawer();
+			edgeDrawer = new EdgeDrawer();
 		}
 
-		public void DrawGraph(List<Vertex> vertices, Bitmap bitmap, VertexMarker vertexMarker) {
+		public void DrawGraph(List<Vertex> vertices, List<Edge> edges, Bitmap bitmap, VertexMarker vertexMarker) {
+			foreach(var e in edges)
+				edgeDrawer.DrawEdge(e, vertices, bitmap);
 			foreach(var v in vertices)
 				vertexDrawer.DrawVertex(v, bitmap, IsVertexMarked(vertexMarker, v));
 		}

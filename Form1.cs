@@ -43,6 +43,13 @@ namespace WinFormsGraphsEditor {
 				graph.AddVertexIfPossible(newVertex);
 				if(newVertex.Number == graph.GetNumberOfVertices())
 					DrawVertex(newVertex);
+				else {
+					int clickedVertex = VertexMouseClicker.GetNumberOfClickedVertex(graph, e.X, e.Y);
+					if(clickedVertex != vertexMarker.GetNumberOfCurrentlyMarkedVertex() && clickedVertex != -1 && vertexMarker.IsAnyVertexMarked()) {
+						graph.AddOrRemoveEdge(clickedVertex, vertexMarker.GetNumberOfCurrentlyMarkedVertex());
+						DrawGraph();
+					}
+				}
 			} else if(e.Button == MouseButtons.Right) {
 				vertexMarker.UpdateCurrentMarkedVertex(graph, e.X, e.Y);
 				DrawGraph();
@@ -83,7 +90,7 @@ namespace WinFormsGraphsEditor {
 		private void Form1_KeyDown(object sender, KeyEventArgs e) {
 			if((e.KeyData & Keys.Delete) != 0) {
 				if(vertexMarker.IsAnyVertexMarked()) { 
-					graph.DeleteVertex(vertexMarker.GetNumberOfCurrentlyMarkedVertex(), vertexMarker);
+					graph.DeleteVertex(vertexMarker);
 					DrawGraph();
 				}
 			}
