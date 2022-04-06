@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WinFormsGraphsEditor {
-	public class EdgeDrawer {
+	public class EdgeDrawer : IDisposable {
 		private readonly Pen pen;
 
 		public EdgeDrawer() {
@@ -22,6 +22,10 @@ namespace WinFormsGraphsEditor {
 				vertices[edge.Vertex1 - 1].GetCenterPosition().x, vertices[edge.Vertex1 - 1].GetCenterPosition().y,
 				vertices[edge.Vertex2 - 1].GetCenterPosition().x, vertices[edge.Vertex2 - 1].GetCenterPosition().y
 			);
+		}
+
+		public void Dispose() {
+			pen.Dispose();
 		}
 	}
 }

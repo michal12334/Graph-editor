@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WinFormsGraphsEditor {
-	public class GraphDrawer {
+	public class GraphDrawer : IDisposable {
 		private readonly VertexDrawer vertexDrawer;
 		private readonly EdgeDrawer edgeDrawer;
 
@@ -24,6 +24,11 @@ namespace WinFormsGraphsEditor {
 
 		private static bool IsVertexMarked(VertexMarker vertexMarker, Vertex v) {
 			return v.Number == vertexMarker.GetNumberOfCurrentlyMarkedVertex();
+		}
+
+		public void Dispose() {
+			vertexDrawer.Dispose();
+			edgeDrawer.Dispose();
 		}
 	}
 }

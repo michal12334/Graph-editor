@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WinFormsGraphsEditor {
-	public class VertexDrawer {
+	public class VertexDrawer : IDisposable {
 		private readonly Pen normalPen;
 		private readonly Pen dashedPen;
 		private readonly Font font;
@@ -45,6 +45,10 @@ namespace WinFormsGraphsEditor {
 
 		private Pen GetPen(bool isVertexMarked) {
 			return isVertexMarked ? dashedPen : normalPen;
+		}
+
+		public void Dispose() {
+			normalPen.Dispose();
 		}
 	}
 }

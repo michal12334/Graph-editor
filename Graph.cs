@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinFormsGraphsEditor {
-	public class Graph {
+	public class Graph : IDisposable {
 		internal readonly List<Vertex> vertices;
 		private readonly GraphDrawer graphDrawer;
 		internal readonly List<Edge> edges;
@@ -111,6 +111,10 @@ namespace WinFormsGraphsEditor {
 			}
 			if(!wasEdgeRemoved)
 				edges.Add(edge);
+		}
+
+		public void Dispose() {
+			graphDrawer.Dispose();
 		}
 	}
 }

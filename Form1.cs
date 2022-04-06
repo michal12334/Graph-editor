@@ -121,6 +121,7 @@ namespace WinFormsGraphsEditor {
 				try { 
 					var reader = new GraphFromFileReader(readFileDialog.FileName);
 					reader.Read();
+					graph.Dispose();
 					graph = reader.GetGraph();
 					vertexMarker.UnmarkVertex();
 					DrawGraph();
