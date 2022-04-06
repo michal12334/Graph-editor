@@ -18,6 +18,12 @@ namespace WinFormsGraphsEditor {
 			edges = new List<Edge>();
 		}
 
+		internal Graph(List<Vertex> vertices, List<Edge> edges) {
+			this.vertices = vertices;
+			this.edges = edges;
+			graphDrawer = new GraphDrawer();
+		}
+
 		public void AddVertexIfPossible(Vertex vertex) {
 			if(IsPossibleToAddVertex(vertex))
 				vertices.Add(vertex);

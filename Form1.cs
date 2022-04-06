@@ -12,7 +12,7 @@ namespace WinFormsGraphsEditor {
 	public partial class Form1 : Form {
 		private Bitmap drawArea;
 		public const int RADIUS = 15;
-		private readonly Graph graph;
+		private Graph graph;
 		private readonly VertexDrawer vertexDrawer;
 		private readonly VertexMarker vertexMarker;
 		
@@ -92,6 +92,40 @@ namespace WinFormsGraphsEditor {
 				if(vertexMarker.IsAnyVertexMarked()) { 
 					graph.DeleteVertex(vertexMarker);
 					DrawGraph();
+				}
+			}
+		}
+
+		private void ButtonSave_Click(object sender, EventArgs e) {
+			var saveFileDialog = new SaveFileDialog {
+				Filter = "graph files (*.graph)|*.graph",
+				RestoreDirectory = true
+			};
+
+			if(saveFileDialog.ShowDialog() == DialogResult.OK) {
+				try {
+					var writer = new GraphToFileWriter(graph, saveFileDialog.FileName);
+					writer.Write();
+				} catch(Exception) {
+					MessageBox.Show("Cannot open this file!!");
+				}
+			}
+		}
+
+		private void ButtonOpen_Click(object sender, EventArgs e) {
+			var readFileDialog = new OpenFileDialog() {
+				Filter = "graph files (*.graph)|*.graph"
+			};
+
+			if(readFileDialog.ShowDialog() == DialogResult.OK) {
+				try { 
+					var reader = new GraphFromFileReader(readFileDialog.FileName);
+					reader.Read();
+					graph = reader.GetGraph();
+					vertexMarker.UnmarkVertex();
+					DrawGraph();
+				} catch(Exception) {
+					MessageBox.Show("Cannot read graph from this file!!");
 				}
 			}
 		}

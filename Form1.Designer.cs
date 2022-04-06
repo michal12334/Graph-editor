@@ -187,24 +187,24 @@ namespace WinFormsGraphsEditor {
 			// buttonOpen
 			// 
 			this.buttonOpen.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonOpen.Enabled = false;
 			this.buttonOpen.Location = new System.Drawing.Point(3, 58);
 			this.buttonOpen.Name = "buttonOpen";
 			this.buttonOpen.Size = new System.Drawing.Size(139, 33);
 			this.buttonOpen.TabIndex = 1;
 			this.buttonOpen.Text = "Wczytaj";
 			this.buttonOpen.UseVisualStyleBackColor = true;
+			this.buttonOpen.Click += new System.EventHandler(this.ButtonOpen_Click);
 			// 
 			// buttonSave
 			// 
 			this.buttonSave.Dock = System.Windows.Forms.DockStyle.Top;
-			this.buttonSave.Enabled = false;
 			this.buttonSave.Location = new System.Drawing.Point(3, 19);
 			this.buttonSave.Name = "buttonSave";
 			this.buttonSave.Size = new System.Drawing.Size(139, 33);
 			this.buttonSave.TabIndex = 0;
 			this.buttonSave.Text = "Zapisz";
 			this.buttonSave.UseVisualStyleBackColor = true;
+			this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
 			// 
 			// Form1
 			// 
