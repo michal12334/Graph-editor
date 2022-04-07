@@ -70,6 +70,7 @@ namespace WinFormsGraphsEditor {
 			// 
 			// canvas
 			// 
+			this.canvas.Cursor = System.Windows.Forms.Cursors.Cross;
 			this.canvas.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.canvas.Location = new System.Drawing.Point(3, 3);
 			this.canvas.Name = "canvas";
@@ -77,6 +78,8 @@ namespace WinFormsGraphsEditor {
 			this.canvas.TabIndex = 0;
 			this.canvas.TabStop = false;
 			this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseDown);
+			this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseMove);
+			this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseUp);
 			// 
 			// tableLayoutPanel1
 			// 

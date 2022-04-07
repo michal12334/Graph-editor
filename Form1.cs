@@ -15,6 +15,7 @@ namespace WinFormsGraphsEditor {
 		private Graph graph;
 		private readonly VertexDrawer vertexDrawer;
 		private readonly VertexMarker vertexMarker;
+		private readonly VerterxDraggerAndDropper verterxDraggerAndDropper;
 		
 		public Form1() {
 			InitializeComponent();
@@ -25,6 +26,7 @@ namespace WinFormsGraphsEditor {
 			pictureBoxColor.BackColor = Color.Black;
 			vertexDrawer = new VertexDrawer();
 			vertexMarker = new VertexMarker();
+			verterxDraggerAndDropper = new VerterxDraggerAndDropper();
 		}
 
 		private void ClearCanvas() {
@@ -53,6 +55,11 @@ namespace WinFormsGraphsEditor {
 			} else if(e.Button == MouseButtons.Right) {
 				vertexMarker.UpdateCurrentMarkedVertex(graph, e.X, e.Y);
 				DrawGraph();
+			} else if(e.Button == MouseButtons.Middle) {
+				if(vertexMarker.IsAnyVertexMarked()) {
+					verterxDraggerAndDropper.SetVertex(graph.vertices[vertexMarker.GetIndexOfCurrentlyMarkedVertex()]);
+					verterxDraggerAndDropper.Start(e.X, e.Y);
+				}
 			}
 		}
 
@@ -145,6 +152,17 @@ namespace WinFormsGraphsEditor {
 			graph = new Graph();
 			vertexMarker.UnmarkVertex();
 			DrawGraph();
+		}
+
+		private void Canvas_MouseMove(object sender, MouseEventArgs e) {
+			verterxDraggerAndDropper.Move(e.X, e.Y);
+			DrawGraph();
+		}
+
+		private void Canvas_MouseUp(object sender, MouseEventArgs e) {
+			if(e.Button == MouseButtons.Middle) {
+				verterxDraggerAndDropper.End();
+			}
 		}
 	}
 }
