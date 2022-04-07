@@ -63,6 +63,7 @@ namespace WinFormsGraphsEditor {
 
 		private void DrawGraph() {
 			ClearCanvas();
+			buttonDeleteVertex.Enabled = vertexMarker.IsAnyVertexMarked();
 			graph.Draw(drawArea, vertexMarker);
 			canvas.Refresh();
 		}
@@ -89,10 +90,14 @@ namespace WinFormsGraphsEditor {
 
 		private void Form1_KeyDown(object sender, KeyEventArgs e) {
 			if((e.KeyData & Keys.Delete) != 0) {
-				if(vertexMarker.IsAnyVertexMarked()) { 
-					graph.DeleteVertex(vertexMarker);
-					DrawGraph();
-				}
+				DeleteMarkedVertex();
+			}
+		}
+
+		private void DeleteMarkedVertex() {
+			if(vertexMarker.IsAnyVertexMarked()) {
+				graph.DeleteVertex(vertexMarker);
+				DrawGraph();
 			}
 		}
 
@@ -129,6 +134,17 @@ namespace WinFormsGraphsEditor {
 					MessageBox.Show("Cannot read graph from this file!!");
 				}
 			}
+		}
+
+		private void ButtonDeleteVertex_Click(object sender, EventArgs e) {
+			DeleteMarkedVertex();
+		}
+
+		private void ButtonClearGraph_Click(object sender, EventArgs e) {
+			graph.Dispose();
+			graph = new Graph();
+			vertexMarker.UnmarkVertex();
+			DrawGraph();
 		}
 	}
 }

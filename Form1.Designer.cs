@@ -28,6 +28,8 @@ namespace WinFormsGraphsEditor {
 			this.canvas = new System.Windows.Forms.PictureBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBoxEdycja = new System.Windows.Forms.GroupBox();
+			this.buttonClearGraph = new System.Windows.Forms.Button();
+			this.buttonDeleteVertex = new System.Windows.Forms.Button();
 			this.flowLayoutPanelColor = new System.Windows.Forms.FlowLayoutPanel();
 			this.buttonColor = new System.Windows.Forms.Button();
 			this.pictureBoxColor = new System.Windows.Forms.PictureBox();
@@ -96,6 +98,8 @@ namespace WinFormsGraphsEditor {
 			// 
 			// groupBoxEdycja
 			// 
+			this.groupBoxEdycja.Controls.Add(this.buttonClearGraph);
+			this.groupBoxEdycja.Controls.Add(this.buttonDeleteVertex);
 			this.groupBoxEdycja.Controls.Add(this.flowLayoutPanelColor);
 			this.groupBoxEdycja.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxEdycja.Location = new System.Drawing.Point(3, 3);
@@ -104,6 +108,28 @@ namespace WinFormsGraphsEditor {
 			this.groupBoxEdycja.TabIndex = 0;
 			this.groupBoxEdycja.TabStop = false;
 			this.groupBoxEdycja.Text = "Edycja";
+			// 
+			// buttonClearGraph
+			// 
+			this.buttonClearGraph.Location = new System.Drawing.Point(6, 97);
+			this.buttonClearGraph.Name = "buttonClearGraph";
+			this.buttonClearGraph.Size = new System.Drawing.Size(132, 28);
+			this.buttonClearGraph.TabIndex = 4;
+			this.buttonClearGraph.Text = "Wyczyść graf";
+			this.buttonClearGraph.UseVisualStyleBackColor = true;
+			this.buttonClearGraph.Click += new System.EventHandler(this.ButtonClearGraph_Click);
+			// 
+			// buttonDeleteVertex
+			// 
+			this.buttonDeleteVertex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonDeleteVertex.Enabled = false;
+			this.buttonDeleteVertex.Location = new System.Drawing.Point(6, 63);
+			this.buttonDeleteVertex.Name = "buttonDeleteVertex";
+			this.buttonDeleteVertex.Size = new System.Drawing.Size(132, 28);
+			this.buttonDeleteVertex.TabIndex = 3;
+			this.buttonDeleteVertex.Text = "Usuń wierzchołek";
+			this.buttonDeleteVertex.UseVisualStyleBackColor = true;
+			this.buttonDeleteVertex.Click += new System.EventHandler(this.ButtonDeleteVertex_Click);
 			// 
 			// flowLayoutPanelColor
 			// 
@@ -249,6 +275,8 @@ namespace WinFormsGraphsEditor {
 		private System.Windows.Forms.PictureBox pictureBoxColor;
 		private System.Windows.Forms.Button buttonColor;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelColor;
+		private System.Windows.Forms.Button buttonClearGraph;
+		private System.Windows.Forms.Button buttonDeleteVertex;
 	}
 }
 
