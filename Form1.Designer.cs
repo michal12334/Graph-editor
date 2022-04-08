@@ -28,11 +28,11 @@ namespace WinFormsGraphsEditor {
 			this.canvas = new System.Windows.Forms.PictureBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBoxEdycja = new System.Windows.Forms.GroupBox();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.pictureBoxColor = new System.Windows.Forms.PictureBox();
+			this.buttonColor = new System.Windows.Forms.Button();
 			this.buttonClearGraph = new System.Windows.Forms.Button();
 			this.buttonDeleteVertex = new System.Windows.Forms.Button();
-			this.flowLayoutPanelColor = new System.Windows.Forms.FlowLayoutPanel();
-			this.buttonColor = new System.Windows.Forms.Button();
-			this.pictureBoxColor = new System.Windows.Forms.PictureBox();
 			this.groupBoxJezyk = new System.Windows.Forms.GroupBox();
 			this.buttonEnglish = new System.Windows.Forms.Button();
 			this.buttonPolish = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@ namespace WinFormsGraphsEditor {
 			((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBoxEdycja.SuspendLayout();
-			this.flowLayoutPanelColor.SuspendLayout();
+			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxColor)).BeginInit();
 			this.groupBoxJezyk.SuspendLayout();
 			this.groupBoxImportExport.SuspendLayout();
@@ -101,9 +101,9 @@ namespace WinFormsGraphsEditor {
 			// 
 			// groupBoxEdycja
 			// 
+			this.groupBoxEdycja.Controls.Add(this.panel1);
 			this.groupBoxEdycja.Controls.Add(this.buttonClearGraph);
 			this.groupBoxEdycja.Controls.Add(this.buttonDeleteVertex);
-			this.groupBoxEdycja.Controls.Add(this.flowLayoutPanelColor);
 			this.groupBoxEdycja.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxEdycja.Location = new System.Drawing.Point(3, 3);
 			this.groupBoxEdycja.Name = "groupBoxEdycja";
@@ -112,8 +112,41 @@ namespace WinFormsGraphsEditor {
 			this.groupBoxEdycja.TabStop = false;
 			this.groupBoxEdycja.Text = "Edycja";
 			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.pictureBoxColor);
+			this.panel1.Controls.Add(this.buttonColor);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(3, 19);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(139, 38);
+			this.panel1.TabIndex = 5;
+			// 
+			// pictureBoxColor
+			// 
+			this.pictureBoxColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBoxColor.Location = new System.Drawing.Point(104, 3);
+			this.pictureBoxColor.Name = "pictureBoxColor";
+			this.pictureBoxColor.Size = new System.Drawing.Size(31, 31);
+			this.pictureBoxColor.TabIndex = 3;
+			this.pictureBoxColor.TabStop = false;
+			// 
+			// buttonColor
+			// 
+			this.buttonColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonColor.Location = new System.Drawing.Point(3, 3);
+			this.buttonColor.Name = "buttonColor";
+			this.buttonColor.Size = new System.Drawing.Size(92, 31);
+			this.buttonColor.TabIndex = 2;
+			this.buttonColor.Text = "Kolor";
+			this.buttonColor.UseVisualStyleBackColor = true;
+			this.buttonColor.Click += new System.EventHandler(this.ButtonColor_Click);
+			// 
 			// buttonClearGraph
 			// 
+			this.buttonClearGraph.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonClearGraph.Location = new System.Drawing.Point(6, 97);
 			this.buttonClearGraph.Name = "buttonClearGraph";
 			this.buttonClearGraph.Size = new System.Drawing.Size(132, 28);
@@ -124,7 +157,8 @@ namespace WinFormsGraphsEditor {
 			// 
 			// buttonDeleteVertex
 			// 
-			this.buttonDeleteVertex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonDeleteVertex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonDeleteVertex.Enabled = false;
 			this.buttonDeleteVertex.Location = new System.Drawing.Point(6, 63);
 			this.buttonDeleteVertex.Name = "buttonDeleteVertex";
@@ -133,39 +167,6 @@ namespace WinFormsGraphsEditor {
 			this.buttonDeleteVertex.Text = "Usuń wierzchołek";
 			this.buttonDeleteVertex.UseVisualStyleBackColor = true;
 			this.buttonDeleteVertex.Click += new System.EventHandler(this.ButtonDeleteVertex_Click);
-			// 
-			// flowLayoutPanelColor
-			// 
-			this.flowLayoutPanelColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.flowLayoutPanelColor.Controls.Add(this.buttonColor);
-			this.flowLayoutPanelColor.Controls.Add(this.pictureBoxColor);
-			this.flowLayoutPanelColor.Location = new System.Drawing.Point(3, 19);
-			this.flowLayoutPanelColor.Name = "flowLayoutPanelColor";
-			this.flowLayoutPanelColor.Size = new System.Drawing.Size(139, 38);
-			this.flowLayoutPanelColor.TabIndex = 2;
-			// 
-			// buttonColor
-			// 
-			this.buttonColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonColor.Location = new System.Drawing.Point(3, 3);
-			this.buttonColor.Name = "buttonColor";
-			this.buttonColor.Size = new System.Drawing.Size(95, 31);
-			this.buttonColor.TabIndex = 1;
-			this.buttonColor.Text = "Kolor";
-			this.buttonColor.UseVisualStyleBackColor = true;
-			this.buttonColor.Click += new System.EventHandler(this.ButtonColor_Click);
-			// 
-			// pictureBoxColor
-			// 
-			this.pictureBoxColor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pictureBoxColor.Location = new System.Drawing.Point(104, 3);
-			this.pictureBoxColor.Name = "pictureBoxColor";
-			this.pictureBoxColor.Size = new System.Drawing.Size(31, 31);
-			this.pictureBoxColor.TabIndex = 0;
-			this.pictureBoxColor.TabStop = false;
 			// 
 			// groupBoxJezyk
 			// 
@@ -253,7 +254,7 @@ namespace WinFormsGraphsEditor {
 			((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.groupBoxEdycja.ResumeLayout(false);
-			this.flowLayoutPanelColor.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxColor)).EndInit();
 			this.groupBoxJezyk.ResumeLayout(false);
 			this.groupBoxImportExport.ResumeLayout(false);
@@ -275,11 +276,11 @@ namespace WinFormsGraphsEditor {
 		private System.Windows.Forms.Button buttonEnglish;
 		private System.Windows.Forms.Button buttonPolish;
 		private System.Windows.Forms.ColorDialog colorDialogBox;
-		private System.Windows.Forms.PictureBox pictureBoxColor;
-		private System.Windows.Forms.Button buttonColor;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelColor;
 		private System.Windows.Forms.Button buttonClearGraph;
 		private System.Windows.Forms.Button buttonDeleteVertex;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.PictureBox pictureBoxColor;
+		private System.Windows.Forms.Button buttonColor;
 	}
 }
 
