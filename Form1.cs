@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -163,6 +164,31 @@ namespace WinFormsGraphsEditor {
 			if(e.Button == MouseButtons.Middle) {
 				verterxDraggerAndDropper.End();
 			}
+		}
+
+		private void ButtonEnglish_Click(object sender, EventArgs e) {
+			ChangeLanguage("en");
+		}
+
+		private void ButtonPolish_Click(object sender, EventArgs e) {
+			ChangeLanguage("pl");
+		}
+
+		private void ChangeLanguage(string code) {
+			var cultureInfo = new CultureInfo(code);
+			CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+			CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+			(int x, int y) currentWindowSize = (this.Width, this.Height);
+			var currentState = WindowState;
+			Controls.Clear();
+			InitializeComponent();
+			(this.Width, this.Height) = currentWindowSize;
+			if(currentState == FormWindowState.Maximized) {
+				WindowState = FormWindowState.Minimized;
+				WindowState = FormWindowState.Maximized;
+			}
+			canvas.Image = drawArea;
+			pictureBoxColor.BackColor = Color.Black;
 		}
 	}
 }
