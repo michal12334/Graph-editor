@@ -96,7 +96,7 @@ namespace WinFormsGraphsEditor {
 		}
 
 		private void Form1_KeyDown(object sender, KeyEventArgs e) {
-			if((e.KeyData & Keys.Delete) != 0) {
+			if(e.KeyCode == Keys.Delete) {
 				DeleteMarkedVertex();
 			}
 		}

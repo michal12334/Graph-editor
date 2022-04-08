@@ -17,7 +17,7 @@ namespace WinFormsGraphsEditor {
 		public void Read() {
 			using var fileReader = new StreamReader(filePath);
 			int lineIter = 0;
-			int numberOfVertices = 0;
+			int numberOfVertices = -1;
 			List<Vertex> vertices = new List<Vertex>();
 			List<Edge> edges = new List<Edge>();
 			while(true) {
@@ -39,6 +39,8 @@ namespace WinFormsGraphsEditor {
 				}
 				lineIter++;
 			}
+			if(vertices.Count != numberOfVertices)
+				throw new Exception();
 			graph = new Graph(vertices, edges);
 		}
 
